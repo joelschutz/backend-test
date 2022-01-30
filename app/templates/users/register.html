@@ -35,6 +35,9 @@
           <input type="password" required placeholder="Choose a secure password" value="{{password}}" name="password" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        {% if inviter %}
+          <input type="hidden" value="{{inviter}}" name="inviter" />
+        {% endif %}
       </form>
     </div>
   </div>
