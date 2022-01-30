@@ -72,7 +72,8 @@ class UserController(BaseController):
         except DoesNotExist:
             info(f'No user was found with the user id: {user_id}')
         else:
-            user.update({'$inc': {'score_count': 1}})
+            user.score_count += 1
+            user.save()
 
             info(f'Score incremented for the user {user.id} to {user.score_count}')
     

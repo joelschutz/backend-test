@@ -13,6 +13,11 @@ router = APIRouter()
 def score_get(request: Request, user_info: dict=Depends(AuthController.auth_user_with_token)):
     # Redicts to /login page if the user is not logged in
     if not isinstance(user_info, UserModel):
+        response = RedirectResponse('/login')
+        
+        if user_info.get('error_codes', [])[0] == 1:
+            response.delete_cookie('access_token')
+
         return RedirectResponse('/login')
 
     base_url = settings.HOST

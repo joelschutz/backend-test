@@ -1,5 +1,5 @@
-import os
 import toml
+from dotenv import find_dotenv
 from pathlib import Path
 from pydantic import BaseSettings, Field
 
@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     MONGODB_URI: str = Field(...)
 
     class Config:
-        env_file = Path(__file__).parent.parent.parent.joinpath('.env')
+        env_file = find_dotenv()
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

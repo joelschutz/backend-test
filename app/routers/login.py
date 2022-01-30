@@ -12,8 +12,12 @@ def login_get(request: Request, user_info: dict=Depends(AuthController.auth_user
     # Redicts to /score page if the user is already logged in
     if isinstance(user_info, UserModel):
         return RedirectResponse('/score')
+    
+    response = TemplateRender.render_login_page(request, **user_info)
+    if user_info.get('error_codes', [])[0] == 1:
+        response.delete_cookie('access_token')
 
-    return TemplateRender.render_login_page(request, **user_info)
+    return response
 
 @router.post('/login', response_class=HTMLResponse)
 def login_post(request: Request, user_info: dict=Depends(AuthController.auth_user_with_credentials)):
@@ -31,7 +35,7 @@ def logout_get(request: Request, user_info: dict=Depends(AuthController.auth_use
     # Redicts to /score page if the user is already logged in
     response = RedirectResponse('/login')
 
-    if isinstance(user_info, UserModel):
+    if isinstance(user_info, UserModel) or user_info.get('error_codes', [])[0] == 1:
         response.delete_cookie('access_token')
 
     return response
