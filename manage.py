@@ -45,7 +45,7 @@ def runserver(
         )
 
 @cli.command(help='Creates an admin account')
-def createsadmin(
+def createadmin(
     name: str,
     email: str,
     phone: str,
