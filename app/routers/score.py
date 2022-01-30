@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
+from app.controllers.users import UserController
 
 from app.views import TemplateRender
 from app.controllers.auth import AuthController
@@ -23,5 +24,10 @@ def score_get(request: Request, user_info: dict=Depends(AuthController.auth_user
         'user': user_info,
         'base_url': base_url
     }
+
+    if user_info.user_type == 'admin':
+        params.update({
+            'participants': UserController.get_participants()
+            })
 
     return TemplateRender.render_score_page(request, **params)

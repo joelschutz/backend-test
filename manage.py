@@ -44,6 +44,29 @@ def runserver(
         log_level=settings.LOG_LEVEL
         )
 
+@cli.command(help='Creates an admin account')
+def createsadmin(
+    name: str,
+    email: str,
+    phone: str,
+    password: str,
+    env: ENV = Option('dev', help='Desired environment'),
+    ):
+    _set_env(env)
+
+    from app import main
+    from app.models.user import UserModel
+
+    user = UserModel(
+        name=name,
+        phone=phone,
+        password=password,
+        email=email,
+        user_type='admin'
+    ).save()
+
+    print(f'Admin created: {user}')
+
 @cli.command(help='Performs pytest routine')
 def pytest():
     _set_env(ENV.test)

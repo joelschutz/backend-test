@@ -1,0 +1,18 @@
+<table style="border: 1px solid black;width=100%">
+    <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black">ID</th>
+      <th style="border: 1px solid black">Name</th>
+      <th style="border: 1px solid black">Email</th>
+      <th style="border: 1px solid black">Phone</th>
+      <th style="border: 1px solid black">Score</th>
+    </tr>
+    {% for user in participants %}
+    <tr style="border: 1px solid black;">
+        <th style="border: 1px solid black">{{ user._id }}</th>
+        <th style="border: 1px solid black">{{ user.name }}</th>
+        <th style="border: 1px solid black">{{ user.email }}</th>
+        <th style="border: 1px solid black">{{ user.phone }}</th>
+        <th style="border: 1px solid black">{{ user.score_count }}</th>
+    </tr>
+    {% endfor %}
+  </table>

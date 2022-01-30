@@ -17,9 +17,13 @@
   </div>
   <div class="row">
       <div class="col-lg-4 col-md-3 col-sm-10 mr-auto">
-        {% with obj=user %}
-        {% include "components/cards.html" %}
-        {% endwith %}
+        {% if user.user_type == "admin" %}
+          {% include "components/table.html" %}
+        {% else %}
+          {% with obj=user %}
+            {% include "components/cards.html" %}
+          {% endwith %}
+        {% endif %}
         </div></div><br><div class="row">
   </div>
 </div>
