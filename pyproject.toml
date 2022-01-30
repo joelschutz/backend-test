@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "backend-test"
+version = "0.1.0"
+description = ""
+authors = ["joelschutz <joeymarley@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.73.0"
+mongoengine = "^0.23.1"
+typer = "^0.4.0"
+Jinja2 = "^3.0.3"
+pydantic = "^1.9.0"
+uvicorn = "^0.17.0"
+python-dotenv = "^0.19.2"
+PyJWT = "^2.3.0"
+python-multipart = "^0.0.5"
+pymodm = "^0.4.3"
+bcrypt = "^3.2.0"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.0.1"
+flake8 = "^4.0.1"
+ipdb = "^0.13.9"
+pytest = "^6.2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
