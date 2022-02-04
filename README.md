@@ -63,7 +63,7 @@ python3 manage.py createadmin <admin-username> <admin-email> \
 <admin-phone-number> <admin-password>
 ```
 
-With a admin account we can start the server. By default it will run in the Development environment, but it can be changed using the `--env`` flag:
+With a admin account we can start the server. By default it will run in the Development environment, but it can be changed using the `--env` flag:
 
 ```bash
 python3 manage.py runserver --env=local
