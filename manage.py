@@ -1,5 +1,4 @@
 from enum import Enum
-from IPython import start_ipython
 from typer import Typer, Option, Argument
 
 cli = Typer(
@@ -22,6 +21,7 @@ def _set_env(env: ENV):
 def shell(
     env: ENV = Argument('local', help='Desired environment')
     ):
+    from IPython import start_ipython
     _set_env(env)
 
     start_ipython([])

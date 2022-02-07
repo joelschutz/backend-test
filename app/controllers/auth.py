@@ -13,7 +13,7 @@ class AuthController:
     @classmethod
     def auth_user_with_token(cls, access_token: str=Cookie(None)):
         if not access_token:
-            return {}
+            return {'error_codes': [5]}
 
         try:
             decoded_token = jwt.decode(
@@ -21,6 +21,7 @@ class AuthController:
                 cls.project_key,
                 algorithms=["HS512"]
             ).get("sub")
+            return UserModel.objects.get({'_id': decoded_token.get('id')})
 
         except jwt.ExpiredSignatureError:
             return {'errors': ['Token expired'], 'error_codes': [1]}
@@ -28,7 +29,8 @@ class AuthController:
         except jwt.PyJWTError:
             return {'errors': ['Can\'t decode token'], 'error_codes': [2]}
 
-        return UserModel.objects.get({'_id': decoded_token.get('id')})
+        except DoesNotExist:
+            return {'errors': ['User not found'], 'error_codes': [3]}
 
     @classmethod
     def auth_user_with_credentials(cls, email: str=Form(...), password: str=Form(...)):

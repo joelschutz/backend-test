@@ -14,7 +14,7 @@ def login_get(request: Request, user_info: dict=Depends(AuthController.auth_user
         return RedirectResponse('/score')
     
     response = TemplateRender.render_login_page(request, **user_info)
-    if user_info.get('error_codes', [0])[0] == 1:
+    if user_info.get('error_codes', [])[0] == 1:
         response.delete_cookie('access_token')
 
     return response
