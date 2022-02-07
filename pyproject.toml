@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "backend-test"
-version = "0.1.1"
+version = "0.2.0"
 description = ""
 authors = ["joelschutz <joeymarley@gmail.com>"]
 
@@ -16,6 +16,7 @@ PyJWT = "^2.3.0"
 python-multipart = "^0.0.5"
 pymodm = "^0.4.3"
 bcrypt = "^3.2.0"
+toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
 ipython = "^8.0.1"
