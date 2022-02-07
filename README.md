@@ -6,6 +6,7 @@ An website for a competition where the participants get points for inviting new 
 
 * [Python3](https://www.python.org/)
 * [FastaAPI](https://fastapi.tiangolo.com/)
+* [Docker](https://www.docker.com/)
 * [MongoDB](https://www.mongodb.com/pt-br)
 * [Pydantic](https://pydantic-docs.helpmanual.io/)
 * [Jinja2](https://jinja.palletsprojects.com/en/3.0.x/)
@@ -29,7 +30,7 @@ Additional variables can also be set to customize the project, notice that some 
 * HOST -> The address where the website will be exposed.(Needs prefix)
 * TOKEN_LIFESPAM_IN_HOURS -> The time in hours that a `access_token` will be valid.
 
-## Installation
+## Basic Installation
 
 This project uses poetry to manage dependencies. It must be installed on the machine and
 the process is different for each OS. For instructions consult the [official documetnation](https://python-poetry.org/docs/#installation)
@@ -51,7 +52,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Basic Usage
+### Basic Usage
 
 This project implements a CLI for interacting with its major features.
 We will use it to run to create an admin account and run the server.
@@ -71,11 +72,26 @@ python3 manage.py runserver --env=local
 
 Use the browser to access the website in the exposed address, by default it is `http://0.0.0.0:8080`. Enjoy the competition.
 
+## Docker Installation
+
+As an alternative you can use Docker to deploy the project using the provided `Dockerfile` and `docker-compose.yml`. It
+already creates a local MongoDB instance for the project. To use this resource you need to provide a `ENV_DOCKER` with the path
+for `.env` file with the necessary value and set an `ENVIRONMENT` variable like that:
+
+```bash
+export ENV_DOCKER=.env_docker
+export ENVIRONMENT=local
+docker-compose build --no-cache && docker-compose up --force-recreate
+```
+
+The variables required in the `.env` file are the same described in the [Configuration](#Configuration) section. If you
+have difficulties, please contact the project creator.
+
 ## TODOS
 
 - [ ] Unit testing implementation
 - [ ] Integration testing implementation
-- [ ] Docker implementation
+- [x] Docker implementation
 - [ ] Code Cleanup and refactoring
 - [ ] Update templates
 

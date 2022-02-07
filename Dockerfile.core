@@ -1,0 +1,14 @@
+FROM python:3.8
+
+ARG ENVIRONMENT
+ENV ENVIRONMENT=${ENVIRONMENT}
+RUN echo ${ENVIRONMENT}
+
+COPY ./app /app
+COPY ./requirements.txt /app
+COPY ./manage.py /
+COPY ./pyproject.toml /
+
+RUN pip3 install -r app/requirements.txt
+
+CMD python3 manage.py runserver --env ${ENVIRONMENT}

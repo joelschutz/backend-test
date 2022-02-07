@@ -1,0 +1,22 @@
+version: '3'
+services: 
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+  web:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.core
+      args:
+        - ENVIRONMENT
+    container_name: "competition-web"
+    ports: 
+      - "8080:8080"
+    env_file:
+      - $ENV_DOCKER
+    links:
+        - mongodb
+    depends_on:
+        - mongodb
